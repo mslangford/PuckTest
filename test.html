@@ -47,7 +47,7 @@
           connection.write("Puck.accelOn();\n", function() { console.log("Accel On..."); });
           connection.write("Puck.accelWr(0x11, 0b00011100);\n", function() { console.log("Accel Wr..."); });
           connection.write("var d = 0;\n", function() { console.log("Reset d..."); });
-          connection.write("Puck.on("accel", a=> d += a.gyro.z/64000);\n", function() { console.log("Callibrate?..."); });
+          connection.write("Puck.on(""accel"", a=> d += a.gyro.z/64000);\n", function() { console.log("Callibrate?..."); });
           // Now tell it to write data on the current light level to Bluetooth
           // 10 times a second. Also ensure that when disconnected, Puck.js
           // resets so the setInterval doesn't keep draining battery.
