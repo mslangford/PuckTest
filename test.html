@@ -13,7 +13,7 @@
     try {
       var j = JSON.parse(line);
       console.log("Received JSON: ",j);
-      elements.light.setValue((j.light*-1)); //+(270/2)+45);  //'-' reverses polarity, 35 is ratio of turn; assuming total 270 degrees lock to lock
+      elements.light.setValue((j.light*-10)); //+(270/2)+45);  //'-' reverses polarity, 35 is ratio of turn; assuming total 270 degrees lock to lock
     } catch(e) {
       console.log("Received: ",line);
     }
@@ -63,7 +63,7 @@
   var elements = {
     heading : TD.label({x:10,y:10,width:190,height:50,label:"Prop Position"}),
     //light : TD.gauge({x:10,y:70,width:190,height:220,label:"",value:180,min:45,max:315}),
-    light : TD.gauge({x:10,y:70,width:250,height:430,label:"",value:5,min:0,max:10}),
+    light : TD.gauge({x:10,y:70,width:250,height:430,label:"",value:0,min:-10,max:10}),
     modal: TD.modal({x:10,y:10,width:190,height:430,label:"Click to connect",onchange:connectDevice})
   }
   for (var i in elements)
