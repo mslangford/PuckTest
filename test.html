@@ -44,6 +44,8 @@
       connection.write("reset();\n", function() {
         // Wait for it to reset itself
         setTimeout(function() {
+          connection.write("Puck.accelOn();\n",
+            function() { console.log("Accel On..."); });
           // Now tell it to write data on the current light level to Bluetooth
           // 10 times a second. Also ensure that when disconnected, Puck.js
           // resets so the setInterval doesn't keep draining battery.
