@@ -13,7 +13,7 @@
     try {
       var j = JSON.parse(line);
       console.log("Received JSON: ",j);
-      elements.light.setValue(j.light);
+      elements.light.setValue(j.light*-1);
     } catch(e) {
       console.log("Received: ",line);
     }
