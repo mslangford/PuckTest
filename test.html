@@ -13,7 +13,7 @@
     try {
       var j = JSON.parse(line);
       console.log("Received JSON: ",j);
-      elements.light.setValue((j.light*-10)); //+(270/2)+45);  //'-' reverses polarity, 35 is ratio of turn; assuming total 270 degrees lock to lock
+      elements.light.setValue((j.light*-1)); //+(270/2)+45);  //'-' reverses polarity, 35 is ratio of turn; assuming total 270 degrees lock to lock
     } catch(e) {
       console.log("Received: ",line);
     }
