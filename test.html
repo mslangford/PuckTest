@@ -12,7 +12,7 @@
    function onLine(line) {
      try {
        if (line.indexOf("Pressed")>=0) {
-        connection.write("var d = 0;\n", function() { console.log("Reset vars..."); });
+        connection.write("var d = 0, timeStationary = 0;\n", function() { console.log("Reset vars..."); });
         console.log("Button pressed!");
        }
        var j = JSON.parse(line);
