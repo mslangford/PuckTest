@@ -12,8 +12,8 @@
    function onLine(line) {
      try {
        if (line.indexOf("Pressed")>=0) {
-         elements.light.setValue(0);
-         console.log("Button pressed!");
+        connection.write("var d = 0;\n", function() { console.log("Reset vars..."); });
+        console.log("Button pressed!");
        }
        var j = JSON.parse(line);
        console.log("Received JSON: ",j);
