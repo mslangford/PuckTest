@@ -47,7 +47,7 @@
          // Wait for it to reset itself
          setTimeout(function() {
            // Now tell it to print text whenever the button is pressed
-           connection.write("Puck.setWatch(function() {console.log(\"Pressed\");}, BTN, { edge: \"rising\", debounce: 50, repeat: true });\n',
+           connection.write("Puck.setWatch(function() {console.log(\"Pressed\");}, BTN, { edge: \"rising\", debounce: 50, repeat: true });\n",
              function() { console.log("Ready..."); });          
            connection.write("Puck.accelOn(26);\n", function() { console.log("Accel On...26Hz"); });
            connection.write("Puck.accelWr(0x11, Puck.accelRd(0x11)|0b00001100);\n", function() { console.log("scale to 2000dps..."); });
