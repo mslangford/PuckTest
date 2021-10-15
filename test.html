@@ -11,6 +11,8 @@
    // Called when we get a line of data - updates the rotational offset
    function onLine(line) {
      try {
+       if (line.indexOf("Pressed")>=0)
+        console.log("Button pressed!");
        var j = JSON.parse(line);
        console.log("Received JSON: ",j);
        elements.light.setValue((j.light)); //+(270/2)+45);  //'-' reverses polarity, 35 is ratio of turn; assuming total 270 degrees lock to lock
