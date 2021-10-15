@@ -44,10 +44,12 @@
       connection.write("reset();\n", function() {
         // Wait for it to reset itself
         setTimeout(function() {
-          connection.write("Puck.accelOn();\n", function() { console.log("Accel On..."); });
-          connection.write("Puck.accelWr(0x11, 0b00011100);\n", function() { console.log("Accel Wr..."); });
-          connection.write("var d = 0;\n", function() { console.log("Reset d..."); });
-          connection.write("Puck.on(\"accel\", a=> d += a.gyro.z/69000);\n", function() { console.log("Callibrate?..."); });  //64000
+          connection.write("Puck.accelOn(26);\n", function() { console.log("Accel On...26Hz"); });
+          connection.write("Puck.accelWr(0x11, Puck.accelRd(0x11)|0b00001100);\n", function() { console.log("scale to 2000dps..."); });
+          //connection.write("var d = 0;\n", function() { console.log("Reset d..."); });
+          connection.write("var d = 0, lastAccel, timeStationary = 0;\n", function() { console.log("Reset vars..."); });
+          //connection.write("Puck.on(\"accel\", a=> d += a.gyro.z/69000);\n", function() { console.log("Callibrate?..."); });  //64000
+          connection.write("Puck.on(\"accel\", r=> {lastAccel = r;d -= r.gyro.z/128000;var a = r.acc;a.mag = a.x*a.x + a.y*a.y + a.z*a.z;a.ang = Math.atan2(a.y,a.x)/(2*Math.PI);if (a.mag < 66000000 || a.mag > 71000000) {timeStationary = 0;} else {if (timeStationary<100) timeStationary++;else {var nearest = Math.round(d)+a.ang;d = d*0.8 + nearest*0.2;}}});\n", function() { console.log("Callibrate?..."); });
           // Now tell it to write data on the current light level to Bluetooth
           // 10 times a second. Also ensure that when disconnected, Puck.js
           // resets so the setInterval doesn't keep draining battery.
